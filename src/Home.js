@@ -92,7 +92,7 @@ const Bingos = styled.div`
 `;
 
 const Bingo = styled.div`
-  font-size : 3rem;
+  font-size : 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
