@@ -4,17 +4,30 @@ import styled from 'styled-components';
 const Home = () => {
   const [bingos, setBingos] = useState(Array.from({ length: 9 }, (_, index) => index));
   const [draggingIndex, setDraggingIndex] = useState(null);
+  const [draggingInfo, setDraggingInfo] = useState(null);
+  const infoItems = ['여행 가기', '아이엘츠', '개발공부']; // Add more items as needed
 
-  const handleDragStart = (index) => {
-    setDraggingIndex(index);
+  const handleDragStart = (index, type) => {
+    if (type === 'bingo') {
+      setDraggingIndex(index);
+      setDraggingInfo(null);
+    } else {
+      setDraggingInfo(infoItems[index]);
+      setDraggingIndex(null);
+    }
   };
 
   const handleDrop = (index) => {
     const newBingos = [...bingos];
-    const [draggedItem] = newBingos.splice(draggingIndex, 1);
-    newBingos.splice(index, 0, draggedItem);
+    if (draggingInfo !== null) {
+      newBingos[index] = draggingInfo;
+      setDraggingInfo(null);
+    } else {
+      const [draggedItem] = newBingos.splice(draggingIndex, 1);
+      newBingos.splice(index, 0, draggedItem);
+      setDraggingIndex(null);
+    }
     setBingos(newBingos);
-    setDraggingIndex(null);
   };
 
   const handleDragOver = (e) => {
@@ -30,16 +43,24 @@ const Home = () => {
             <Bingo
               key={index}
               draggable
-              onDragStart={() => handleDragStart(index)}
+              onDragStart={() => handleDragStart(index, 'bingo')}
               onDrop={() => handleDrop(index)}
               onDragOver={handleDragOver}
             >
-              {bingo + 1}
+              {typeof bingo === 'number' ? bingo + 1 : bingo}
             </Bingo>
           ))}
         </Bingos>
         <Info>
-          <div>hello</div>
+          {infoItems.map((item, index) => (
+            <InfoItem
+              key={index}
+              draggable
+              onDragStart={() => handleDragStart(index, 'info')}
+            >
+              {item}
+            </InfoItem>
+          ))}
         </Info>
       </Body>
     </>
@@ -86,4 +107,20 @@ const Info = styled.div`
   border: 1.5px solid #d9d9d9;
   color: black;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InfoItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border: 1px solid #000;
+  margin-bottom: 10px;
+  cursor: grab;
 `;
