@@ -117,8 +117,10 @@ const InfoItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 50px;
+  padding : 5px;
+  height: 20px;
+  width : 80px;
+  border-radius: 15px;
   background-color: #f0f0f0;
   border: 1px solid #000;
   margin-bottom: 10px;
