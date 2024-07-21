@@ -1,6 +1,6 @@
 # dragNdrop
 ### `drag and drop` intro
-This is a react file for practicing drag and drop functions **AS BINGO**
+This is a React file for practicing drag and drop function **AS CREATING BINGO**
 
 ### Library
 - React-Router-Dom
