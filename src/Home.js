@@ -92,13 +92,15 @@ const Bingos = styled.div`
 `;
 
 const Bingo = styled.div`
+  font-size : 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 150px;
   height: 150px;
-  background-color: #d9d9d9;
-  border: 1px solid #000;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 2px solid #d9d9d9;
 `;
 
 const Info = styled.div`
@@ -122,7 +124,7 @@ const InfoItem = styled.div`
   width : 80px;
   border-radius: 15px;
   background-color: #f0f0f0;
-  border: 1px solid #000;
+  border: 1px solid #d9d9d9;
   margin-bottom: 10px;
   cursor: grab;
 `;
