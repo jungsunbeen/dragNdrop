@@ -23,8 +23,7 @@ const Home = () => {
       newBingos[index] = draggingInfo;
       setDraggingInfo(null);
     } else {
-      const [draggedItem] = newBingos.splice(draggingIndex, 1);
-      newBingos.splice(index, 0, draggedItem);
+      [newBingos[draggingIndex], newBingos[index]] = [newBingos[index], newBingos[draggingIndex]];
       setDraggingIndex(null);
     }
     setBingos(newBingos);
